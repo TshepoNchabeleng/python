@@ -11,3 +11,18 @@ class Topic(models.Model):#the class inherits from Model, defines the model's ba
 
     def __str__(self):
         return self.text
+    
+
+class Entry (models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) # foreign key instance, a reference to another record in the db
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_ass=True)
+
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        return f"{self.text[:50]}..."
+
+
