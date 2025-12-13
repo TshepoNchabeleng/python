@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import requests
 import json
 
+load_dotenv()
+
 city_name = 'Pretoria'
 state_code = 'GP'
 country_code = 'ZA'
@@ -12,5 +14,10 @@ response.text
 
 response_data = json.loads(response.text)
 response_data
-
-print(response_data)
+print(API_key)
+try:
+    print(response_data)
+    
+except HTTPError as e:
+    if response.status_code == 401:
+        print(f"Error: {response.status_code} Invalid API key")
